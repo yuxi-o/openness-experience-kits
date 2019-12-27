@@ -16,6 +16,6 @@ os_kernel_rt_tuned_package_urls:
 
 os_kernel_rt_grub_parameters: "hugepagesz=2M hugepages=5000 intel_iommu=on iommu=pt"
 os_kernel_rt_tuned_vars: |
-  isolated_cores=2-3
+  isolated_cores=1
   nohz=on
-  nohz_full=2-3
+  nohz_full=1

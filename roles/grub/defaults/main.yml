@@ -4,7 +4,7 @@
 ---
 
 hugepage_size: "2M" # Or 1G
-hugepage_amount: "5000"
+hugepage_amount: "500"
 
 default_grub_params: "hugepagesz={{ hugepage_size }} hugepages={{ hugepage_amount }} intel_iommu=on iommu=pt"
 
