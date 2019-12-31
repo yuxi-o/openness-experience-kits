@@ -4,11 +4,9 @@ openNESS部署有两种方式：Network Edge和On-Premise。
 
 openNESS-191201版本主要包含三个工程或仓库：
 
-[openness-experience-kits](https://github.com/open-ness/openness-experience-kits.git)：ansible工程，负责openNESS的总体部署，openNESS采用ansible管理部署。
-
-[edgecontroller](https://github.com/open-ness/edgecontroller.git)：控制器仓库，一个openNESS部署中只有一个controller。
-
-[edgenode](https://github.com/open-ness/edgenode.git)：node仓库，一个openNESS部署中可包含多个node节点。
+- [openness-experience-kits](https://github.com/open-ness/openness-experience-kits.git)：ansible工程，负责openNESS的总体部署，openNESS采用ansible管理部署。
+- [edgecontroller](https://github.com/open-ness/edgecontroller.git)：控制器仓库，一个openNESS部署中只有一个controller。
+- [edgenode](https://github.com/open-ness/edgenode.git)：node仓库，一个openNESS部署中可包含多个node节点。
 
 ## 1. on-premise deployment
 
