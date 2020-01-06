@@ -6,7 +6,7 @@
 kubeovn_version: v0.8.0
 ovn_version: "2.11.4-1"
 
-kubeovn_cleanup_url: "https://raw.githubusercontent.com/alauda/kube-ovn/v0.8.0/dist/images/cleanup.sh"
+kubeovn_cleanup_url: "https://github.com/alauda/kube-ovn/tree/v0.8.0/dist/images/cleanup.sh"
 kubeovn_cleanup_dest: "/tmp/kubeovn-cleanup.sh"
 kubeovn_cleanup_paths:
 - /var/run/openvswitch
@@ -15,9 +15,9 @@ kubeovn_cleanup_paths:
 - /etc/cni/net.d/00-kube-ovn.conflist
 
 kubeovn_yamls:
-- "https://raw.githubusercontent.com/alauda/kube-ovn/{{ kubeovn_version }}/yamls/crd.yaml"
-- "https://raw.githubusercontent.com/alauda/kube-ovn/{{ kubeovn_version }}/yamls/ovn.yaml"
-- "https://raw.githubusercontent.com/alauda/kube-ovn/{{ kubeovn_version }}/yamls/kube-ovn.yaml"
+- "/tmp/yamls/crd.yaml"
+- "/tmp/yamls/ovn.yaml"
+- "/tmp/yamls/kube-ovn.yaml"
 
 ovn_packages_urls:
 - "https://github.com/alauda/ovs/releases/download/v{{ ovn_version }}/openvswitch-{{ ovn_version }}.el7.x86_64.rpm"

@@ -6,6 +6,8 @@
 source scripts/ansible-precheck.sh
 source scripts/task_log_file.sh
 
+cp -f flex/yamls/* /tmp
+
 ansible-playbook -vv \
     ./ne_controller.yml \
     --inventory inventory.ini

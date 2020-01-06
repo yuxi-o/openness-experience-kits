@@ -10,8 +10,8 @@
   register: tmp_dir
 
 - name: download NFD yamls
-  get_url:
-    url: "{{ nfd_base_url }}/{{ item }}.template"
+  copy:
+    src: "/tmp/{{ item }}.template"
     dest: "{{ tmp_dir.path }}/{{ item }}"
   with_items: "{{ nfd_yamls }}"
 

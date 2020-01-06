@@ -10,8 +10,10 @@
   register: tmp_dir
 
 - name: download Multus daemonSet
-  get_url:
-    url: "{{ multus_daemonset_url }}"
+#  get_url:
+#    url: "{{ multus_daemonset_url }}"
+  copy:
+    src: /tmp/multus-daemonset.yml
     dest: "{{ tmp_dir.path }}/multus-daemonset.yml"
 
 - name: create kustomization.yml
