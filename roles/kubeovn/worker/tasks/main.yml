@@ -37,6 +37,11 @@
   - 8285/udp
   - 8472/udp
 
+- name: start openswitch
+  shell: service openvswitch start
+  args:
+    warn: false
+
 - name: waiting for OVS DB on the node
   wait_for:
     path: /var/run/openvswitch/db.sock
