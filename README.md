@@ -2,20 +2,17 @@
 
 openNESS部署有两种方式：Network Edge和On-Premise。
 
+openNESS要求只有一台controller，可以有多台nodes。
+
 openNESS-191201版本主要包含三个工程或仓库：
 
 - [openness-experience-kits](https://github.com/open-ness/openness-experience-kits.git)：ansible工程，负责openNESS的总体部署，openNESS采用ansible管理部署。
 - [edgecontroller](https://github.com/open-ness/edgecontroller.git)：控制器仓库，一个openNESS部署中只有一个controller。
 - [edgenode](https://github.com/open-ness/edgenode.git)：node仓库，一个openNESS部署中可包含多个node节点。
 
-## 1. on-premise deployment
+## 0. Preconditions
 
-on-premise有两种部署方式：在线和离线（offline）。
-
-openNESS要求只有一台controller，可以有多台nodes。
-
-### 1.1 Preconditions
-无论在线部署还是离线部署，都应按如下步骤配置所有主机（controller和nodes）：
+无论是On-premise还是Network Edge部署，无论在线部署还是离线部署，都应按如下步骤配置所有主机（controller和nodes）：
 
 1. 安装CentOS 7.6 Minimal distro (x86_64)，统一配置root用户名和密码，并配置NTP时间同步。
 
@@ -58,7 +55,11 @@ ssh-copy-id root@localhost
 ssh-copy-id root@ip
 ```
 
-### 1.2 inline-deployment
+## 1. on-premise deployment
+
+on-premise有两种部署方式：在线和离线（offline）。
+
+### 1.1 inline-deployment
 
 在线部署参考：[controller-edge-node-setup.md](https://github.com/open-ness/specs/blob/master/doc/getting-started/on-premises/controller-edge-node-setup.md)。
 
@@ -89,7 +90,7 @@ node主机完成preconditios步骤后，在controller主机运行如下命令部署node节点：
 ./deploy_onprem_node.sh
 ```
 
-### 1.3 offline-deployment
+### 1.2 offline-deployment
 
 离线部署参考：[offline-deployment.md](https://github.com/open-ness/specs/blob/master/doc/getting-started/on-premises/offline-deployment.md)。
 
@@ -125,5 +126,61 @@ cd openness-experience-kits
 node主机完成preconditios步骤后，在controller主机运行如下命令部署node节点：
 ```
 ./deploy_onprem_node.sh
+```
+
+## 2. Network Edge deployment
+
+Network Edge目前官方仅支持在线安装。
+
+### 2.1 inline-deployment
+
+在线部署参考：[controller-edge-node-setup.md](https://github.com/open-ness/specs/blob/master/doc/getting-started/network-edge/controller-edge-node-setup.md)。
+
+可按如下步骤配置部署openNESS：
+
+1. 克隆修改过的仓库并解压。
+```
+git clone https://github.com/yuxi-o/openness-experience-kits.git
+cd openness-experience-kits/
+git checkout -b flex191201 origin/flex191201
+```
+**注：根据实际部署情况，修改配置文件inventory.ini的controller和node主机名、IP和账号等。**
+
+2. cleanup
+```
+./cleanup_ne.sh
+```
+
+3. 部署controller。
+```
+./deploy_ne_controller.sh
+```
+
+4. 部署node。
+node主机完成preconditios步骤后，在controller主机运行如下命令部署node节点：
+```
+./deploy_ne_node.sh
+```
+
+5. 部署dashboard。
+
+在controller上运行如下命令，部署dashboard应用：
+```
+docker pull kubernetesui/metrics-scraper:v1.0.1
+docker pull kubernetesui/dashboard:v2.0.0-beta4
+cd flex/k8s
+kubectl apply -f recommended.yaml
+kubectl apply -f dashboard-admin-user.yaml
+```
+
+运行如下命令获取dashboard端口（recommended.yaml中配置，可修改），默认30000：
+```
+kubectl -n kubernetes-dashboard get service kubernetes-dashboard
+```
+
+至此，可通过浏览器地址`https://<controller-ip>:<port>/`访问dashboard，推荐使用火狐浏览器。
+复制如下命令获取的token到浏览器然后登陆即可。
+```
+kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
 ```
 

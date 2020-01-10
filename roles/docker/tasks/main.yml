@@ -74,3 +74,17 @@
 
 - name: Restart auditd
   shell: service auditd restart
+
+- name: import k8s images
+  block:
+  - name: k8s images
+    shell: docker pull bluersw/{{ item }} && docker tag bluersw/{{ item }} k8s.gcr.io/{{ item }}
+    with_items:
+    - kube-apiserver:v1.16.2
+    - kube-controller-manager:v1.16.2 
+    - kube-scheduler:v1.16.2  
+    - kube-proxy:v1.16.2 
+    - pause:3.1 
+    - etcd:3.3.15-0  
+    - coredns:1.6.2  
+
