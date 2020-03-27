@@ -13,7 +13,7 @@
 #  get_url:
 #    url: "{{ multus_daemonset_url }}"
   copy:
-    src: /tmp/multus-daemonset.yml
+    src: /tmp/yamls/multus-daemonset.yml
     dest: "{{ tmp_dir.path }}/multus-daemonset.yml"
 
 - name: create kustomization.yml
