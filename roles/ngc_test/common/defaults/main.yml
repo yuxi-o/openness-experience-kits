@@ -5,7 +5,7 @@
 
 epcforedge_git_repo:
 #  dir: https://{{ git_repo_token }}@github.com/open-ness/epcforedge.git
-  dir: https://github.com/yuxi-o/epcforedge.git
+  dir: https://gitee.com/yuxio/epcforedge.git
   download_dir: /opt/epcforedge
   # branch: master 
   branch: flex191201

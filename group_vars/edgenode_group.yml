@@ -9,7 +9,7 @@ os_remove_yum_plugins: true
 
 #git_repo_url: https://{{ git_repo_token }}@github.com/open-ness/edgenode.git
 #git_repo_branch: master
-git_repo_url: https://github.com/yuxi-o/edgenode.git
+git_repo_url: https://gitee.com/yuxio/edgenode.git
 git_repo_branch: flex191201
 git_repo_dest: /opt/edgenode
 
