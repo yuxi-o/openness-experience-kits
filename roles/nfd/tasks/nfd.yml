@@ -11,7 +11,7 @@
 
 - name: download NFD yamls
   copy:
-    src: "/tmp/{{ item }}.template"
+    src: "/tmp/yamls/{{ item }}.template"
     dest: "{{ tmp_dir.path }}/{{ item }}"
   with_items: "{{ nfd_yamls }}"
 
